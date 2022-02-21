@@ -7,9 +7,9 @@ def change_to_binary(n):
         return
     
     else :
-        # n을 2 로 나눈 나머지가 이진수에 해당하는 숫자
-        print(n%2, end='')
         # n을 2로 나눈 몫은 또 나눠줘야하니까 재귀함수호출 시 파라미터로 전달
         change_to_binary(n//2)
+        # n을 2 로 나눈 나머지가 이진수에 해당하는 숫자
+        print(n%2, end='')
     
 change_to_binary(11)

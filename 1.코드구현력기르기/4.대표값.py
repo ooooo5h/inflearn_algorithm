@@ -1,34 +1,29 @@
 import math
 
 n = int(input())
-n_list = list(map(int, input().split()))
+a = list(map(int, input().split()))
 
-average = math.ceil(sum(n_list) / n)  # 평균점수
+avg_a = math.ceil(sum(a)/n)  # 평균
 
-# print(average)
+min = 214700000 # 가장 큰 수를 가정해 대입해놓고, min값 덮어쓰기
 
-# diff_list = []    리스트에 더하지말고, enumerate함수를 사용해서 구해보자!?
-  
-# for i in n_list :
-#     diff_list.append(abs(average - i))
+# 학생의 번호를 출력해야한다 => 학생의 idx가 필요 => enumerate
+for idx, val in enumerate(a):
     
-# print(diff_list)
-
-min = 2147000000
-
-for idx, val in enumerate(n_list) :
+    minus = abs(avg_a - val)
     
-    tmp = abs(average - val)   # 차이
+    if minus < min :
+        min = minus
+        score = val    # 차가 같으면, 더 큰 점수가 정답이니까 점수를 저장해야한다
+        res = idx + 1  # 점수차가 동일하면, 빠른 학생번호가 정답이라 저장해야하고, 1부터 시작한다했으니 +1을 해야한다.
     
-    if tmp < min :             
-        min = tmp
-        score = val
-        res = idx + 1
-        
-    elif tmp == min :
-        if val > score :
+    elif minus == min :  # 차이가 같은 경우!
+        # 점수를 비교하기
+        if score < val :  # 현재 val이 더 크면 val이 정답
             score = val
             res = idx + 1
+            # 아예 똑같은 점수를 발견하면 이 if문 내부로는 들어가지않음
+            # 맨 앞의 idx가 담겨있다.
             
-print(average, res)
-
+print(avg_a, res)
+    
